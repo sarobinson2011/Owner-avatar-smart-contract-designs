@@ -16,14 +16,14 @@ contract LockDrop {
         uint256 reward;
     }
 
-    mapping (address => timedDeposit) public balance;   // individual account balance
+    mapping (address => timedDeposit) public balances;   // individual account balance
 
     constructor() {
         owner = msg.sender;
     }
 
     function deposit() external payable {
-        balance[msg.sender] = timedDeposit(
+        balances[msg.sender] = timedDeposit(
             {
                 amount: msg.value, 
                 timestamp: block.timestamp,
@@ -33,11 +33,11 @@ contract LockDrop {
     } 
     
     function withdraw() external {
-        require(balance[msg.sender].amount > 0, "No way in here...");
-        require(block.timestamp >= balance[msg.sender].timestamp + 10 days, "Time lock not expired");
-        uint256 amount = balance[msg.sender].amount;
-        balance[msg.sender].amount = 0;
-        balance[msg.sender].timestamp = 0;
+        require(balances[msg.sender].amount > 0, "You have no balance to withdraw...");
+        require(block.timestamp >= balances[msg.sender].timestamp + 5 minutes, "Time lock not expired");
+        uint256 amount = balances[msg.sender].amount;
+        balances[msg.sender].amount = 0;
+        balances[msg.sender].timestamp = 0;
         payable(msg.sender).transfer(amount);
     }
 }
