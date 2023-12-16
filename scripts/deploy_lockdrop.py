@@ -32,7 +32,21 @@ def main():
     
     # target.withdraw({"from": player})
     
-    view_storage_slots(DEPTH)
+    view_storage_slots(DEPTH) 
+
+    """ 
+
+    Using the Development Testnet (ganache)
+
+    In order to test the deposit withdraw functionality, we can utilise Ganache test chain
+    such that we have multiple test accounts ready to use, plus we don't need test-ETH
+
+    1.  set to ganache
+    2.  using account[0]
+    3.  --> here we use Ganache-CLI *or* Ganche-GUI
+
+
+    """
 
 
 

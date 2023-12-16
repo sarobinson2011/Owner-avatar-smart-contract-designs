@@ -13,4 +13,4 @@ def get_account(index=None, id=None):
     return accounts.add(config["wallets"]["from_key"])
 
 
-# you actually do NEED to order some weed
+
