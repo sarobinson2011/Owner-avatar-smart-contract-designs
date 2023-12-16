@@ -16,7 +16,7 @@ contract LockDrop {
         uint256 reward;
     }
 
-    mapping (address => timedDeposit) public balances;   // individual account balance
+    mapping (address => timedDeposit) public balances;   
 
     constructor() {
         owner = msg.sender;
