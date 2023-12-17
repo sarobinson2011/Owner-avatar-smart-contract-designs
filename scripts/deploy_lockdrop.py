@@ -4,6 +4,7 @@ from brownie import web3, network, interface, convert, LockDrop
 from eth_utils import keccak
 
 MY_ACC = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
+# d = "0xbD74c4bD2e02aA143F0bf2a052AEa332A5464965"
 DEPTH = 5
 
 GAS_LIMIT = 6000000
@@ -24,20 +25,14 @@ def main():
     # target = interface.ILockDrop(deployment)
     
     deployment.deposit({"from": player, "value": Web3.toWei(0.1, "ether")})
-    # deployment.withdraw({"from": player})
-        
+    # target.withdraw({"from": player})    
     view_storage_slots(DEPTH, deployment.address) 
 
     """ 
 
-    Using the Development Testnet (ganache)
+    1.  using "development" (Ganache-CLI)
 
-    In order to test the deposit withdraw functionality, we can utilise Ganache test chain
-    such that we have multiple test accounts ready to use, plus we don't need test-ETH
-
-    1.  set to ganache
-    2.  using account[0]
-    3.  --> here we use Ganache-CLI *or* Ganche-GUI
+        1a. LEARN HOW TO USE CLI        <----    HERE !!!
 
     """
 

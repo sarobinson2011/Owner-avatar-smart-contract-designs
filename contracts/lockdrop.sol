@@ -1,12 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-/*
-Title:  LockDrop 
-1. time-lock deposit/with contract
-2. with an auto airdrop (on withdraw) for every unit time locked
-*/
-
 contract LockDrop {
     address public owner;
 
@@ -17,6 +11,7 @@ contract LockDrop {
     }
 
     mapping (address => timedDeposit) public balances;   
+    // event statement                                          <---    HERE !!
 
     constructor() {
         owner = msg.sender;
@@ -30,6 +25,7 @@ contract LockDrop {
                 reward: 0  // zero for now
             }
         );
+        // emit event                                           <---    HERE !!
     } 
     
     function withdraw() external {
