@@ -11,11 +11,11 @@ contract LockDrop {
     }
 
     mapping (address => timedDeposit) public balances;   
-    // event statement                                          <---    HERE !!
+    event newDeposit(address indexed _user, uint256 _amount);
 
     constructor() {
         owner = msg.sender;
-    }
+    }    
 
     function deposit() external payable {
         balances[msg.sender] = timedDeposit(
@@ -25,7 +25,7 @@ contract LockDrop {
                 reward: 0  // zero for now
             }
         );
-        // emit event                                           <---    HERE !!
+        emit newDeposit(msg.sender, msg.value);
     } 
     
     function withdraw() external {

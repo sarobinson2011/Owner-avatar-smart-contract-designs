@@ -4,13 +4,11 @@ from brownie import web3, network, interface, convert, LockDrop
 from eth_utils import keccak
 
 MY_ACC = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
-# d = "0xbD74c4bD2e02aA143F0bf2a052AEa332A5464965"
 DEPTH = 5
 
 GAS_LIMIT = 6000000
 
 def view_storage_slots(_depth, _target):
-    # print(f"\n")
     for i in range(_depth):
         store_value = web3.eth.get_storage_at(_target, i)
         store_value_hex = web3.toHex(store_value)
@@ -30,11 +28,34 @@ def main():
 
     """ 
 
-    1.  using "development" (Ganache-CLI)
+    2. From brownie import Contract, project
 
-        1a. LEARN HOW TO USE CLI        <----    HERE !!!
+    # Load your contract and get the contract instance
+        contract_address = "0x123..."  # Replace with your contract's address
+        contract = Contract.from_abi("MyContract", contract_address, MyContract.abi)
+
+    # Listen for the event
+        def handle_event(event):
+            print(f"Sender: {event['args']['_sender']}, Value: {event['args']['_value']}")
+
+        contract.MyEvent.createFilter().listen(handle_event)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     """
 
 
 
+
+  
