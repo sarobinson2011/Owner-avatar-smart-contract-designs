@@ -27,8 +27,8 @@ def main():
     view_storage_slots(DEPTH, deployment.address) 
 
     """ 
-
-    2. From brownie import Contract, project
+       
+    brownie import Contract, project
 
     # Load your contract and get the contract instance
         contract_address = "0x123..."  # Replace with your contract's address

@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "./tokenContract.sol";
+
 contract LockDrop {
     address public owner;
 
@@ -12,10 +14,7 @@ contract LockDrop {
 
     mapping (address => timedDeposit) public balances;   
     event newDeposit(address indexed _user, uint256 _amount);
-
-    constructor() {
-        owner = msg.sender;
-    }    
+    event newWithdraw(address indexed _user, uint256 _amount);
 
     function deposit() external payable {
         balances[msg.sender] = timedDeposit(
@@ -35,6 +34,8 @@ contract LockDrop {
         balances[msg.sender].amount = 0;
         balances[msg.sender].timestamp = 0;
         payable(msg.sender).transfer(amount);
+        emit newWithdraw(msg.sender, amount);
+        amount = 0;
     }
 }
 
