@@ -1,6 +1,6 @@
 from web3 import Web3
 from scripts.helpful_scripts import get_account
-from brownie import web3, network, interface, convert, LockDrop
+from brownie import web3, network, interface, convert, LockDrop, Contract
 from eth_utils import keccak
 
 MY_ACC = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
@@ -20,40 +20,27 @@ def main():
 
     player = get_account()
     deployment = LockDrop.deploy({"from": player})
-    # target = interface.ILockDrop(deployment)
+    target = interface.ILockDrop(deployment)
     
-    deployment.deposit({"from": player, "value": Web3.toWei(0.1, "ether")})
+    target.deposit({"from": player, "value": Web3.toWei(0.1, "ether")})
     # target.withdraw({"from": player})    
     view_storage_slots(DEPTH, deployment.address) 
 
-    """ 
-       
-    brownie import Contract, project
+
+
+    """ handle emitted events from LockDrop """
 
     # Load your contract and get the contract instance
-        contract_address = "0x123..."  # Replace with your contract's address
-        contract = Contract.from_abi("MyContract", contract_address, MyContract.abi)
+    contract = Contract.from_abi("LockDrop", deployment, LockDrop.abi)
 
     # Listen for the event
-        def handle_event(event):
-            print(f"Sender: {event['args']['_sender']}, Value: {event['args']['_value']}")
+    def handle_event(event):
+        print(f"Sender: {event['args']['_sender']}, Value: {event['args']['_value']}")
 
-        contract.MyEvent.createFilter().listen(handle_event)
-
-
+    contract.MyEvent.createFilter().listen(handle_event)
 
 
-
-
-
-
-
-
-
-
-
-
-    """
+      
 
 
 
