@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./tokenContract.sol";
+import "./tokencontract.sol";
 
 contract LockDrop {
     address public owner;
@@ -16,6 +16,10 @@ contract LockDrop {
     event newDeposit(address indexed _user, uint256 _amount);
     event newWithdraw(address indexed _user, uint256 _amount);
 
+    constructor() {
+        owner = msg.sender;
+    }
+
     function deposit() external payable {
         balances[msg.sender] = timedDeposit(
             {
@@ -29,13 +33,14 @@ contract LockDrop {
     
     function withdraw() external {
         require(balances[msg.sender].amount > 0, "You have no balance to withdraw...");
-        require(block.timestamp >= balances[msg.sender].timestamp + 5 minutes, "Time lock not expired");
-        uint256 amount = balances[msg.sender].amount;
+        require(block.timestamp >= balances[msg.sender].timestamp + 5 minutes, "Time lock not expired...");
+        uint256 temp_amount = balances[msg.sender].amount;
         balances[msg.sender].amount = 0;
         balances[msg.sender].timestamp = 0;
-        payable(msg.sender).transfer(amount);
-        emit newWithdraw(msg.sender, amount);
-        amount = 0;
+        balances[msg.sender].reward = 0;
+        payable(msg.sender).transfer(temp_amount);
+        temp_amount = 0;
+        emit newWithdraw(msg.sender, temp_amount);
     }
-}
+} 
 
