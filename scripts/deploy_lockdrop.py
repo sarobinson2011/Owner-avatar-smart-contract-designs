@@ -1,6 +1,6 @@
 from web3 import Web3
 from scripts.helpful_scripts import get_account
-from brownie import web3, network, interface, convert, LockDrop, Contract
+from brownie import web3,interface, convert, Contract, LockDrop, RewardToken 
 from eth_utils import keccak
 
 MY_ACC = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
@@ -26,5 +26,4 @@ def main():
 
     print(f"deployment address = {lockdrop_address}")  
     view_storage_slots(DEPTH, lockdrop_address) 
-
 

@@ -10,9 +10,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract RewardToken is ERC20 {
     address public owner;
 
-    constructor() ERC20("Reward", "RWD") {
+    constructor(address _address, uint256 _supply) ERC20("Reward", "RWD") {
         owner = msg.sender;
-        _mint(address(this), 100000);       
+        _mint(_address, _supply);       
     }
 }
+
 

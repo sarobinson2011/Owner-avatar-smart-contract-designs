@@ -1,11 +1,11 @@
 from web3 import Web3
 from scripts.helpful_scripts import get_account
-from brownie import web3, network, interface, convert, LockDrop, Contract
+from brownie import web3, network, interface, convert, LockDrop, Contract, RewardToken
 from eth_utils import keccak
 
 TARGET = "0x59B9324f05a5d82F3Bf80969c11Dcd552082B96E"    # LockDrop deployed address
+SUPPLY = 1000000    # supply = 1 million
 DEPTH = 5
-
 GAS_LIMIT = 6000000
 
 def view_storage_slots(_depth, _target):
@@ -28,6 +28,9 @@ def main():
     target.withdraw({"from": player})  
 
     view_storage_slots(DEPTH, TARGET)
+
+    # token_rwd = RewardToken.deploy({"from": player}, args=[TARGET.address, SUPPLY])  # added this 
+
 
 
 
