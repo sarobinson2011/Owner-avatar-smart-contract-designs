@@ -3,8 +3,8 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, LockDrop, Contract, RewardToken
 from eth_utils import keccak
 
-LOCKDROP = "0x59B9324f05a5d82F3Bf80969c11Dcd552082B96E"  # LockDrop deployed address
-RWDTOKEN = "0x69c6867Aad379ceb6A8EBEF3f07275f97130Aa8E"  # RewardToken deployted address 
+LOCKDROP = "0x63eBB10d1625ED42a72f5D7DD3F3F1459bec0116"  # LockDrop deployed address
+RWDTOKEN = "0xE01788f3b8135e3C4BdcdD08F480A7aC5FDD1854"  # RewardToken deployed address 
 SUPPLY = 1_000_000 * (10 ** 18)                          # supply = 1 million
 
 DEPTH = 5
@@ -18,9 +18,12 @@ def view_storage_slots(_depth, _target):
         print(f"storage slot {i}: {store_value_hex}")
     print(f"\n")
 
-def check_token_balance(_address):
-    contract_address = _address
-    print(contract_address)
+def check_token_balance():
+    lockdrop_contract = Contract.from_explorer(LOCKDROP)
+    reward_token_contract = Contract.from_explorer(RWDTOKEN)
+    rwd_balance = reward_token_contract.balanceOf(LOCKDROP)
+    print(f"\nRWD token balance of LockDrop contract: {rwd_balance}")
+    
 
 
 def main():
@@ -35,8 +38,7 @@ def main():
     # target.withdraw({"from": player})  
 
     view_storage_slots(DEPTH, LOCKDROP)
-
-    check_token_balance(RWDTOKEN)
+    check_token_balance()
 
    
 

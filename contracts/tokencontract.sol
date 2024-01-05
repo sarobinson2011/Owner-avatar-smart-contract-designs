@@ -16,4 +16,3 @@ contract RewardToken is ERC20 {
     }
 }
 
-

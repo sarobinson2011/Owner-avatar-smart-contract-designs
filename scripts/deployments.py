@@ -17,15 +17,19 @@ def view_storage_slots(_depth, _target):
         print(f"storage slot {i}: {store_value_hex}")
     print(f"\n")
 
+
 def main():
 
     player = get_account()
-    deployment = LockDrop.deploy({"from": player})
-    lockdrop_address = deployment.address
-    rwd_token = RewardToken.deploy(lockdrop_address, SUPPLY, {"from": player})  
-    
-    deployment.deposit({"from": player, "value": Web3.toWei(0.1, "ether")})
+    lockdrop = LockDrop.deploy({"from": player})
+    lockdrop_address = lockdrop.address
 
-    print(f"deployment address = {lockdrop_address}")  
+    rwd_token = RewardToken.deploy(lockdrop_address, SUPPLY, {"from": player})  
+    rwd_token_address = rwd_token.address
+    
+    print(f"\nLockDrop deployment address = {lockdrop_address}")  
+    print(f"\nReward Token deployment address = {rwd_token_address}")
+    
     view_storage_slots(DEPTH, lockdrop_address) 
 
+    # publish and verify code bit for the deployments   
