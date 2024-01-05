@@ -4,8 +4,9 @@ from brownie import web3,interface, convert, Contract, LockDrop, RewardToken
 from eth_utils import keccak
 
 MY_ACC = "0xF8f8269488f73fab3935555FCDdD6035699deE25"
-DEPTH = 5
+SUPPLY = 1_000_000 * (10 ** 18)                          # supply = 1 million
 
+DEPTH = 5
 GAS_LIMIT = 6000000
 
 def view_storage_slots(_depth, _target):
@@ -21,7 +22,7 @@ def main():
     player = get_account()
     deployment = LockDrop.deploy({"from": player})
     lockdrop_address = deployment.address
-    rwd_token = RewardToken.deploy({"from": player}, args=[])  # args to pass in?
+    rwd_token = RewardToken.deploy(lockdrop_address, SUPPLY, {"from": player})  
     
     deployment.deposit({"from": player, "value": Web3.toWei(0.1, "ether")})
 
