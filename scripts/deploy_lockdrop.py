@@ -21,6 +21,7 @@ def main():
     player = get_account()
     deployment = LockDrop.deploy({"from": player})
     lockdrop_address = deployment.address
+    rwd_token = RewardToken.deploy({"from": player}, args=[])  # args to pass in?
     
     deployment.deposit({"from": player, "value": Web3.toWei(0.1, "ether")})
 

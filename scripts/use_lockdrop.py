@@ -29,7 +29,7 @@ def main():
 
     view_storage_slots(DEPTH, TARGET)
 
-    # token_rwd = RewardToken.deploy({"from": player}, args=[TARGET.address, SUPPLY])  # added this 
+    # token_rwd = RewardToken.deploy(TARGET, SUPPLY, {"from": player})  # added this 
 
 
 
