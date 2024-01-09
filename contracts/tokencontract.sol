@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.22;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -16,3 +16,5 @@ contract RewardToken is ERC20 {
     }
 }
 
+    // explorer: https://testnet.aurorascan.dev/api         OLD
+    // explorer: https://explorer.testnet.aurora.dev/       NEW   

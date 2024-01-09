@@ -225,7 +225,7 @@ live:
     multicall2: '0xace58a26b8Db90498eF0330fDC9C2655db0C45E2'
     name: Mainnet
   - chainid: 1313161555
-    explorer: https://testnet.aurorascan.dev/api
+    explorer: https://explorer.testnet.aurora.dev/ 
     host: https://testnet.aurora.dev
     id: aurora-test
     name: Testnet

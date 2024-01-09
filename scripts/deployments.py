@@ -24,20 +24,16 @@ def main():
     lockdrop = LockDrop.deploy({"from": player}, publish_source=True)
     lockdrop_address = lockdrop.address
 
-    # rwd_token = RewardToken.deploy(lockdrop_address, SUPPLY, {"from": player}, publish_source=True)  
+    # rwd_token = RewardToken.deploy(lockdrop_address, SUPPLY, {"from": player})#, publish_source=True)  
     # rwd_token_address = rwd_token.address
     
-    print(f"\nLockDrop deployment address = {lockdrop_address}")  
+    # print(f"\nLockDrop deployment address = {lockdrop_address}")  
     # print(f"\nReward Token deployment address = {rwd_token_address}")
     
-    # view_storage_slots(DEPTH, lockdrop_address) 
-
-    # publish and verify code bit for the deployments   
-
+    view_storage_slots(DEPTH, lockdrop_address) 
 
 
 # Api key for aurora plus: 7mw9Jk13q361TKAcDMTSf4pYGqxLCHg3jy1XntA3Bsb
-
 # just use any string for API key, e.g. "qwerty" and it will work   <--  HERE !!
 
 

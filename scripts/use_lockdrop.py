@@ -3,8 +3,8 @@ from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, LockDrop, Contract, RewardToken
 from eth_utils import keccak
 
-# LOCKDROP = "0x63eBB10d1625ED42a72f5D7DD3F3F1459bec0116"  # LockDrop deployed address
-LOCKDROP = "0x865e4C42f2Ca3b1ae1bd074e3B385732a32859bc"  # sepolia deployment
+LOCKDROP = "0x63eBB10d1625ED42a72f5D7DD3F3F1459bec0116"  # LockDrop deployed address
+# LOCKDROP = "0x865e4C42f2Ca3b1ae1bd074e3B385732a32859bc"  # sepolia deployment
 RWDTOKEN = "0xE01788f3b8135e3C4BdcdD08F480A7aC5FDD1854"  # RewardToken deployed address 
 SUPPLY = 1_000_000 * (10 ** 18)                          # supply = 1 million
 
