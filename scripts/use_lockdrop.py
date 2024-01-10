@@ -1,3 +1,4 @@
+from multiprocessing.synchronize import Lock
 from web3 import Web3
 from scripts.helpful_scripts import get_account
 from brownie import web3, network, interface, convert, LockDrop, Contract, RewardToken
@@ -31,6 +32,9 @@ def main():
 
     player = get_account()
     target = interface.ILockDrop(LOCKDROP)
+
+    to_verify = LockDrop.at(LOCKDROP)
+    LockDrop.publish_source(to_verify)
     
     # call deposit (0.1 ETH)
     # target.deposit({"from": player, "value": Web3.toWei(0.1, "ether")})
@@ -38,12 +42,8 @@ def main():
     # call withdraw
     # target.withdraw({"from": player})  
 
-    view_storage_slots(DEPTH, LOCKDROP)
+    # view_storage_slots(DEPTH, LOCKDROP)
     # check_token_balance()
-
-
-
-   
 
 
 
@@ -60,3 +60,8 @@ def main():
 
     """  ---------------------------------  """
 
+
+    # Changes to the network-config.yaml file (in the .brownie folder)
+
+    # explorer: https://testnet.aurorascan.dev/api         OLD
+    # explorer: https://explorer.testnet.aurora.dev/       NEW   

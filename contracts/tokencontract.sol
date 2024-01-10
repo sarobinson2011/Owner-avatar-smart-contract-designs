@@ -16,5 +16,3 @@ contract RewardToken is ERC20 {
     }
 }
 
-    // explorer: https://testnet.aurorascan.dev/api         OLD
-    // explorer: https://explorer.testnet.aurora.dev/       NEW   
